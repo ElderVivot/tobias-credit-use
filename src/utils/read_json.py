@@ -1,10 +1,10 @@
 import json
-import codecs
+from codecs import open
 
 
 def readJson(filePath: str) -> dict:
     try:
-        with codecs.open(filePath, 'r', 'latin1') as file:
+        with open(filePath, 'r', 'latin1') as file:
             return json.load(file)
     except Exception as e:
         print(e)
