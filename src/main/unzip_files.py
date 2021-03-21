@@ -6,6 +6,7 @@ sys.path.append(dirNameSrc)
 
 from zipfile import ZipFile
 from utils.functions import getOnlyNameFile
+from utils.read_json import readJson
 
 
 class UnzipFiles():
@@ -20,10 +21,10 @@ class UnzipFiles():
                 if file.lower().endswith(('.zip')):
                     print(f'- Processing {pathFile} - {indexFile} of {lenFiles}.')
                     with ZipFile(pathFile, 'r') as compressed:
-                        print(compressed.namelist())
                         compressed.extractall(os.path.join(root, getOnlyNameFile(pathFile)))
 
 
 if __name__ == '__main__':
-    main = UnzipFiles('/home/eldervivot/Programming/microservices/read-xml-nfe/data')
+    envJson = readJson(os.path.join(dirNameSrc, '..', 'env.json'))
+    main = UnzipFiles(envJson['path_files_xml'])
     main.processAll()
