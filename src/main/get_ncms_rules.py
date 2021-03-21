@@ -22,7 +22,7 @@ class GetNcms():
         # bebidasFrias = BebidasFrias(dataJson, self._returnOnlyValueNcm)
         # return bebidasFrias.cstSNVendaVarejista()
 
-        monofasicos = Monofasicos(dataJson)
+        monofasicos = Monofasicos(dataJson, self._returnOnlyValueNcm)
         return monofasicos.monofasicoVarejo()
 
     def _saveResultProcess(self, listData: List[dict]):

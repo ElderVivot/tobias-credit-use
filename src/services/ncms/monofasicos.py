@@ -8,8 +8,9 @@ from utils.functions import returnDataInDictOrArray, treatsFieldAsText
 
 
 class Monofasicos():
-    def __init__(self, dataNcm: dict):
+    def __init__(self, dataNcm: dict, returnOnlyValueNcm=False):
         self._dataNcm: dict = dataNcm
+        self._returnOnlyValueNcm = returnOnlyValueNcm
 
     def monofasicoVarejo(self):
         tagsNecessaries = ['monofasico_varejo']
@@ -18,9 +19,12 @@ class Monofasicos():
         nameNcm = treatsFieldAsText(returnDataInDictOrArray(self._dataNcm, ['monofasico_varejo', ncm]))
         dataTagsNecessaries = returnDataInDictOrArray(self._dataNcm, tagsNecessaries, None)
         if dataTagsNecessaries is not None:
-            return {
-                "ncm": ncm,
-                "nameNcm": nameNcm,
-                "tag": 'MonofasicoVarejo',
-                "dataTag": ""
-            }
+            if self._returnOnlyValueNcm is False:
+                return {
+                    "ncm": ncm,
+                    "nameNcm": nameNcm,
+                    "tag": 'MonofasicoVarejo',
+                    "dataTag": ""
+                }
+            else:
+                return ncm
