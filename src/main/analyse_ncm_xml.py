@@ -24,7 +24,7 @@ class AnalyseNcmXml():
         self._folderSaveResult = os.path.join(dirNameSrc, '..', 'data', 'processed',
                                               'resultado_analise', f'{getDateTimeNowInFormatStr()}.csv')
 
-        getNcms = GetNcms(saveResultProcessInFile=False, returnOnlyValueNcm=True, silent=True)
+        getNcms = GetNcms(envJson['rules_of_xml'], saveResultProcessInFile=False, returnOnlyValueNcm=True, silent=True)
         self._listNcms = getNcms.processAll()
 
         self._writeHeader()

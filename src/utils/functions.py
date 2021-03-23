@@ -128,3 +128,18 @@ def returnDataInDictOrArray(data: Any, arrayStructureDataReturn: List[Any], valu
         return dataAccumulated
     except Exception:
         return valueDefault
+
+
+def removeAnArrayFromWithinAnother(arraySet=[]):
+    newArray = []
+    try:
+        for array in arraySet:
+            if array is None:
+                continue
+            for vector in array:
+                if len(vector) == 0:
+                    continue
+                newArray.append(vector)
+    except Exception:
+        pass
+    return newArray
