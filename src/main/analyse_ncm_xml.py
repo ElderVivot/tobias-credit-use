@@ -10,6 +10,7 @@ from utils.read_json import readJson
 from utils.functions import getDateTimeNowInFormatStr
 from services.compare_xml_x_ncm_rules import CompareXmlXNcmRules
 from main.get_ncms_rules import GetNcms
+from dao.connect_mongo import ConnectMongoDB
 
 envJson = readJson(os.path.join(dirNameSrc, '..', 'env.json'))
 sys.path.append(envJson['path_library_read_nf'])
@@ -27,11 +28,8 @@ class AnalyseNcmXml():
         getNcms = GetNcms(envJson['rules_of_xml'], saveResultProcessInFile=False, returnOnlyValueNcm=True, silent=True)
         self._listNcms = getNcms.processAll()
 
-        self._writeHeader()
-
-    def _writeHeader(self):
-        with open(self._folderSaveResult, 'w') as file:
-            file.write("Numero Nota;Modelo;Serie;Emissao;CNPJ Emitente;Nome Emitente;CNPJ Destinatario;Nome Destinatario;Codigo Produto;Nome Produto;NCM;CFOP;Unidade;Quantidade;Valor Unitario;Valor Total;NCM na Lista de Regra?;Chave Nota\n")
+        self._connectMongo = ConnectMongoDB()
+        self._database = self._connectMongo.getConnetion()
 
     def _process(self, pathFile):
         indexNfe = IndexNfe(pathFile)
@@ -41,7 +39,7 @@ class AnalyseNcmXml():
             if self._listNfeAlreadyRead.count(nfe['chave_nota']) > 1:
                 return 'AlreadyProcessed'
 
-            compareXmlXNcmRules = CompareXmlXNcmRules(nfe, self._listNcms, self._folderSaveResult)
+            compareXmlXNcmRules = CompareXmlXNcmRules(self._database, nfe, self._listNcms, self._folderSaveResult)
             compareXmlXNcmRules.process()
         # copy files that dont read to analyse whice is problem
         else:
@@ -55,6 +53,8 @@ class AnalyseNcmXml():
                 if file.lower().endswith(('.xml')) and pathFile.find('dont_read') < 0:
                     print(f'- Processing {pathFile} - {indexFile+1} of {lenFiles}.')
                     self._process(pathFile)
+
+        self._connectMongo.closeConnection()
 
 
 if __name__ == '__main__':

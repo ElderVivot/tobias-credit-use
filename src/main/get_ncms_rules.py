@@ -1,6 +1,6 @@
 import os
 import sys
-from typing import List, List
+from typing import List
 
 dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.append(dirNameSrc)

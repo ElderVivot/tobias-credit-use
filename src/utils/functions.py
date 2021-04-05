@@ -89,7 +89,7 @@ def treatsFieldAsDate(valorCampo, formatoData=1):
         formatoDataStr = "%d%m%Y"
 
     try:
-        return datetime.datetime.strptime(valorCampo[:lengthField], formatoDataStr).date()
+        return datetime.datetime.strptime(valorCampo[:lengthField], formatoDataStr)
     except ValueError:
         return None
 
