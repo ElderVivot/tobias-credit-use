@@ -60,7 +60,7 @@ def treatsFieldAsDecimal(value, numberOfDecimalPlaces=2):
         return float(0)
 
 
-def treatsFieldAsDate(valorCampo, formatoData=1):
+def treatsFieldAsDate(valorCampo, formatoData=1, getWithHour=False):
     """
     :param valorCampo: Informar o campo string que será transformado para DATA
     :param formatoData: 1 = 'DD/MM/YYYY' ; 2 = 'YYYY-MM-DD' ; 3 = 'YYYY/MM/DD' ; 4 = 'DDMMYYYY'
@@ -89,7 +89,10 @@ def treatsFieldAsDate(valorCampo, formatoData=1):
         formatoDataStr = "%d%m%Y"
 
     try:
-        return datetime.datetime.strptime(valorCampo[:lengthField], formatoDataStr)
+        if getWithHour is False:
+            return datetime.datetime.strptime(valorCampo[:lengthField], formatoDataStr).date()
+        else:
+            return datetime.datetime.strptime(valorCampo[:lengthField], formatoDataStr)
     except ValueError:
         return None
 

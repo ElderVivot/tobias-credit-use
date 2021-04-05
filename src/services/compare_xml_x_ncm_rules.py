@@ -1,17 +1,17 @@
 import os
 import sys
-from typing import List, Dict
+from typing import Dict
 from pymongo.database import Database
 
 dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.append(dirNameSrc)
 
 from dao.save_data import SaveData
-from utils.functions import treatsFieldAsDate
+from utils.functions import treatsFieldAsDate, returnDataInDictOrArray
 
 
 class CompareXmlXNcmRules():
-    def __init__(self, database: Database, dataXml: Dict[str, dict], listNcm: List[str], folderSaveResult: str):
+    def __init__(self, database: Database, dataXml: Dict[str, dict], listNcm: Dict[str, str], folderSaveResult: str):
         self._database = database
         self._dataXml = dataXml
         self._listNcm = listNcm
@@ -20,11 +20,11 @@ class CompareXmlXNcmRules():
         inscricaoFederal = self._dataXml['emitente']['inscricao_federal']
         self._saveData = SaveData(self._database, f'nfe_{inscricaoFederal}')
 
-    def _checkIfNcmInList(self, ncm):
-        return True if self._listNcm.count(ncm) > 0 else False
+    def _getNcmRule(self, ncm):
+        return returnDataInDictOrArray(self._listNcm, [ncm])
 
     def _makeObject(self, product):
-        data_emissao = treatsFieldAsDate(self._dataXml['identificao_nfe']['data_emissao'], 2)
+        data_emissao = treatsFieldAsDate(self._dataXml['identificao_nfe']['data_emissao'], 2, getWithHour=True)
         return {
             "emitente_inscricao_federal": self._dataXml['emitente']['inscricao_federal'],
             "emitente_razao_social": self._dataXml['emitente']['razao_social'],
@@ -46,7 +46,8 @@ class CompareXmlXNcmRules():
             "prod_unidade": product['unidade'],
             "prod_quantidade": product['quantidade'],
             "prod_valor_unitario": product['valor_unitario'],
-            "prod_valor_total": product['valor_total']
+            "prod_valor_total": product['valor_total'],
+            "prod_ncm_rule": product['nmc_rule']
         }
 
     def _saveResult(self, dataToSave):
@@ -60,6 +61,6 @@ class CompareXmlXNcmRules():
 
     def process(self):
         for index, product in enumerate(self._dataXml['dados_produtos']):
-            product['nmc_in_list_rule'] = self._checkIfNcmInList(product['ncm'])
+            product['nmc_rule'] = self._getNcmRule(product['ncm'])
             dataToSave = self._makeObject(product)
             self._saveResult(dataToSave)

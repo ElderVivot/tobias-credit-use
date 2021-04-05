@@ -1,6 +1,6 @@
 import os
 import sys
-from typing import List
+from typing import List, Dict
 
 dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.append(dirNameSrc)
@@ -19,6 +19,7 @@ class GetNcms():
         self._silent = silent  # dont show which file is processed
         self._folderNcm = os.path.join(dirNameSrc, '..', 'data', 'ncms', 'all')
         self._folderSaveResult = os.path.join(dirNameSrc, '..', 'data', 'processed', 'ncms', 'result_process.csv')
+        self._listNcm: Dict[str, str] = {}
 
     def _process(self, dataJson: dict):
         listNcm = []
@@ -33,6 +34,8 @@ class GetNcms():
 
             if dataNcm is not None:
                 listNcm.append(dataNcm)
+                self._listNcm[dataJson['ncm']] = rule
+
         return listNcm
 
     def _saveResultProcess(self, listData: List[dict]):
@@ -42,7 +45,7 @@ class GetNcms():
                 file.write(f"'{data['ncm']};{data['nameNcm']};{data['tag']};{data['dataTag']}")
                 file.write('\n')
 
-    def processAll(self) -> List[dict]:
+    def processAll(self) -> Dict[str, str]:
         listData = []
         for root, _, files in os.walk(self._folderNcm):
             lenFiles = len(files)
@@ -59,9 +62,10 @@ class GetNcms():
         if self._saveResultProcessInFile is True:
             self._saveResultProcess(listData)
 
-        return listData
+        return self._listNcm
 
 
 if __name__ == '__main__':
-    main = GetNcms(['MonofasicoVarejo', 'BebidaFria'], True, False, False)
-    print(len(main.processAll()))
+    main = GetNcms(['MonofasicoVarejo', 'BebidaFria'], saveResultProcessInFile=False,
+                   returnOnlyValueNcm=True, silent=False)
+    print(main.processAll())
