@@ -1,10 +1,10 @@
 import os
 import sys
+from zipfile import ZipFile
 
 dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.append(dirNameSrc)
 
-from zipfile import ZipFile
 from utils.functions import getOnlyNameFile
 from utils.read_json import readJson
 
