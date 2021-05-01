@@ -23,14 +23,19 @@ class GetNcms():
 
     def _process(self, dataJson: dict):
         listNcm = []
+        bebidasFrias = BebidasFrias(dataJson, self._returnOnlyValueNcm)
+        monofasicos = Monofasicos(dataJson, self._returnOnlyValueNcm)
+
         for rule in self._listRules:
             dataNcm = None
             if rule == 'BebidaFria':
-                bebidasFrias = BebidasFrias(dataJson, self._returnOnlyValueNcm)
                 dataNcm = bebidasFrias.bebidaFria()
             elif rule == 'MonofasicoVarejo':
-                monofasicos = Monofasicos(dataJson, self._returnOnlyValueNcm)
                 dataNcm = monofasicos.monofasicoVarejo()
+            elif rule == 'MonofasicoAtacadoSN_CST_4':
+                dataNcm = monofasicos.monofasicoAtacadoSN_CST_4()
+            elif rule == 'MonofasicoAtacadoSN_CST_6':
+                dataNcm = monofasicos.monofasicoAtacadoSN_CST_6()
 
             if dataNcm is not None:
                 listNcm.append(dataNcm)

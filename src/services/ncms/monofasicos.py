@@ -28,3 +28,37 @@ class Monofasicos():
                 }
             else:
                 return ncm
+
+    def monofasicoAtacadoSN_CST_4(self):
+        tagsNecessaries = ['monofasico_atacado', 'codigo_da_situacao_tributaria_cst', 'simples_nacional', 'saida', '4']
+
+        ncm = self._dataNcm['ncm']
+        nameNcm = treatsFieldAsText(returnDataInDictOrArray(self._dataNcm, ['monofasico_atacado', ncm]))
+        dataTagsNecessaries = returnDataInDictOrArray(self._dataNcm, tagsNecessaries, None)
+        if dataTagsNecessaries is not None:
+            if self._returnOnlyValueNcm is False:
+                return {
+                    "ncm": ncm,
+                    "nameNcm": nameNcm,
+                    "tag": 'MonofasicoAtacadoSN_CST_4',
+                    "dataTag": ""
+                }
+            else:
+                return ncm
+
+    def monofasicoAtacadoSN_CST_6(self):
+        tagsNecessaries = ['monofasico_atacado', 'codigo_da_situacao_tributaria_cst', 'simples_nacional', 'saida', '6']
+
+        ncm = self._dataNcm['ncm']
+        nameNcm = treatsFieldAsText(returnDataInDictOrArray(self._dataNcm, ['monofasico_atacado', ncm]))
+        dataTagsNecessaries = returnDataInDictOrArray(self._dataNcm, tagsNecessaries, None)
+        if dataTagsNecessaries is not None:
+            if self._returnOnlyValueNcm is False:
+                return {
+                    "ncm": ncm,
+                    "nameNcm": nameNcm,
+                    "tag": 'MonofasicoAtacadoSN_CST_6',
+                    "dataTag": ""
+                }
+            else:
+                return ncm

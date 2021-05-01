@@ -26,11 +26,12 @@ class GenerateResult():
 
     def _writeHeader(self):
         with open(self._folderSaveResult, 'w') as file:
-            file.write("Competencia;Tributado;Monofasico Varejo;Bebidas Frias\n")
+            file.write("Competencia;Tributado;Monofasico Varejo;Monofasico Atacado;Bebidas Frias\n")
 
     def _saveResult(self, sumObj):
         with open(self._folderSaveResult, 'a') as file:
-            file.write(f"{sumObj['competence']};{sumObj['tributado']};{sumObj['monofasico_varejo']};{sumObj['bebida_fria']}\n")
+            file.write(
+                f"{sumObj['competence']};{sumObj['tributado']};{sumObj['monofasico_varejo']};{sumObj['monofasico_atacado']};{sumObj['bebida_fria']}\n")
 
     def process(self):
         year = self._yearStart
@@ -57,6 +58,8 @@ class GenerateResult():
                         sumObj['monofasico_varejo'] = getSum['sumTotal']
                     elif getSum['_id'] == 'BebidaFria':
                         sumObj['bebida_fria'] = getSum['sumTotal']
+                    elif getSum['_id'] == 'MonofasicoAtacadoSN_CST_4' or getSum['_id'] == 'MonofasicoAtacadoSN_CST_6':
+                        sumObj['monofasico_atacado'] += getSum['sumTotal']
 
                 self._saveResult(sumObj)
 
