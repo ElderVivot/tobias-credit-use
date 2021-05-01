@@ -48,6 +48,7 @@ class GenerateResult():
                 sumObj['tributado'] = 0
                 sumObj['monofasico_varejo'] = 0
                 sumObj['bebida_fria'] = 0
+                sumObj['monofasico_atacado'] = 0
 
                 sumValueProduct = SumValueProduct(self._database, f"nfe_{self._inscricaoFederal}", year, month)
                 getSums = sumValueProduct.getSum()
