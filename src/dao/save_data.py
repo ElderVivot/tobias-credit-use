@@ -2,6 +2,7 @@ import os
 import sys
 from pymongo.database import Database
 from pymongo.collection import Collection
+from pymongo import ASCENDING
 from typing import Dict
 
 dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
@@ -13,6 +14,11 @@ class SaveData(object):
         self._connection = connection
         self._nameCollection = nameCollection
         self._collection: Collection = self._connection[self._nameCollection]
+        self._createIndex()
+
+    def _createIndex(self):
+        if self._collection.count() == 1:
+            self._collection.create_index([("chave_nota", ASCENDING), ("prod_numero_item", ASCENDING)])
 
     def save(self, data: Dict[str, str], filters: Dict[str, str]):
         try:

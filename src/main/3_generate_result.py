@@ -50,7 +50,7 @@ class GenerateResult():
                 sumObj['bebida_fria'] = 0
                 sumObj['monofasico_atacado'] = 0
 
-                sumValueProduct = SumValueProduct(self._database, f"nfe_{self._inscricaoFederal}", year, month)
+                sumValueProduct = SumValueProduct(self._database, f"notas_{self._inscricaoFederal}", year, month)
                 getSums = sumValueProduct.getSum()
                 for getSum in getSums:
                     if getSum['_id'] == '':

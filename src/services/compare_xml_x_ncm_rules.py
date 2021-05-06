@@ -18,7 +18,7 @@ class CompareXmlXNcmRules():
         self._folderSaveResult = folderSaveResult
 
         inscricaoFederal = self._dataXml['emitente']['inscricao_federal']
-        self._saveData = SaveData(self._database, f'nfe_{inscricaoFederal}')
+        self._saveData = SaveData(self._database, f'notas_{inscricaoFederal}')
 
     def _getNcmRule(self, ncm):
         return returnDataInDictOrArray(self._listNcm, [ncm])
