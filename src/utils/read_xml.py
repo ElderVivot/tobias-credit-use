@@ -7,7 +7,7 @@ def readXml(filePath: str) -> dict:
     # :filePath is xml file
     """
     try:
-        with open(filePath, 'r') as file:
+        with open(filePath, 'rb') as file:
             return xmldict.parse(file.read())
     except Exception as e:
         print(e)
