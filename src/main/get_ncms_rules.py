@@ -18,7 +18,7 @@ class GetNcms():
         self._returnOnlyValueNcm = returnOnlyValueNcm
         self._silent = silent  # dont show which file is processed
         self._folderNcm = os.path.join(dirNameSrc, '..', 'data', 'ncms', 'all')
-        self._folderSaveResult = os.path.join(dirNameSrc, '..', 'data', 'processed', 'ncms', 'result_process.csv')
+        self._folderSaveResult = os.path.join(dirNameSrc, '..', 'data', 'processed', 'ncms', 'list_ncm_rules_filtered.csv')
         self._listNcm: Dict[str, str] = {}
 
     def _process(self, dataJson: dict):
