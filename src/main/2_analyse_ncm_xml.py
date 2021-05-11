@@ -10,6 +10,7 @@ from utils.read_json import readJson
 from utils.functions import getDateTimeNowInFormatStr
 from services.compare_xml_x_ncm_rules import CompareXmlXNcmRules
 from main.get_ncms_rules import GetNcms
+from main.get_ncms_name import GetNcmsName
 from dao.connect_mongo import ConnectMongoDB
 
 envJson = readJson(os.path.join(dirNameSrc, '..', 'env.json'))
@@ -28,6 +29,9 @@ class AnalyseNcmXml():
         getNcms = GetNcms(envJson['rules_of_xml'], saveResultProcessInFile=False, returnOnlyValueNcm=True, silent=True)
         self._listNcms = getNcms.processAll()
 
+        getNcmsName = GetNcmsName(saveResultProcessInFile=False, silent=True)
+        self._listNcmsName = getNcmsName.processAll()
+
         self._connectMongo = ConnectMongoDB()
         self._database = self._connectMongo.getConnetion()
 
@@ -39,11 +43,15 @@ class AnalyseNcmXml():
             if self._listNfeAlreadyRead.count(nfe['chave_nota']) > 1:
                 return 'AlreadyProcessed'
 
-            compareXmlXNcmRules = CompareXmlXNcmRules(self._database, nfe, self._listNcms, self._folderSaveResult)
+            compareXmlXNcmRules = CompareXmlXNcmRules(
+                self._database, nfe, self._listNcmsName, self._listNcms, self._folderSaveResult)
             compareXmlXNcmRules.process()
         # copy files that dont read to analyse whice is problem
         else:
-            copy(pathFile, os.path.join(self._pathWithXmlFiles, 'dont_read', os.path.basename(pathFile)))
+            pathToSaveXmlsDontRead = os.path.join(self._pathWithXmlFiles, 'dont_read')
+            if os.path.exists(pathToSaveXmlsDontRead) is False:
+                os.mkdir(pathToSaveXmlsDontRead)
+            copy(pathFile, os.path.join(pathToSaveXmlsDontRead, os.path.basename(pathFile)))
 
     def processAll(self):
         for root, _, files in os.walk(self._pathWithXmlFiles):

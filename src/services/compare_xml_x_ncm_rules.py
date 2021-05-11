@@ -11,9 +11,11 @@ from utils.functions import treatsFieldAsDate, returnDataInDictOrArray
 
 
 class CompareXmlXNcmRules():
-    def __init__(self, database: Database, dataXml: Dict[str, dict], listNcm: Dict[str, str], folderSaveResult: str):
+    def __init__(self, database: Database, dataXml: Dict[str, dict], listNcmName: Dict[str, str], listNcm: Dict[str, str],
+                 folderSaveResult: str):
         self._database = database
         self._dataXml = dataXml
+        self._listNcmName = listNcmName
         self._listNcm = listNcm
         self._folderSaveResult = folderSaveResult
 
@@ -22,6 +24,9 @@ class CompareXmlXNcmRules():
 
     def _getNcmRule(self, ncm):
         return returnDataInDictOrArray(self._listNcm, [ncm])
+
+    def _getNcmName(self, ncm):
+        return returnDataInDictOrArray(self._listNcmName, [ncm])
 
     def _makeObject(self, product):
         data_emissao = treatsFieldAsDate(self._dataXml['identificao_nfe']['data_emissao'], 2, getWithHour=True)
@@ -42,6 +47,7 @@ class CompareXmlXNcmRules():
             "prod_codigo_produto": product['codigo_produto'],
             "prod_nome_produto": product['nome_produto'],
             "prod_ncm": product['ncm'],
+            "prod_name_ncm": product['name_ncm'],
             "prod_cfop": product['cfop'],
             "prod_unidade": product['unidade'],
             "prod_quantidade": product['quantidade'],
@@ -60,7 +66,9 @@ class CompareXmlXNcmRules():
         )
 
     def process(self):
-        for index, product in enumerate(self._dataXml['dados_produtos']):
-            product['nmc_rule'] = self._getNcmRule(product['ncm'])
+        for product in self._dataXml['dados_produtos']:
+            ncm = product['ncm']
+            product['nmc_rule'] = self._getNcmRule(ncm)
+            product['name_ncm'] = self._getNcmName(ncm)
             dataToSave = self._makeObject(product)
             self._saveResult(dataToSave)
