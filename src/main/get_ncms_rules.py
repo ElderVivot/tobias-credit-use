@@ -71,6 +71,6 @@ class GetNcms():
 
 
 if __name__ == '__main__':
-    main = GetNcms(['MonofasicoVarejo', 'BebidaFria'], saveResultProcessInFile=False,
-                   returnOnlyValueNcm=True, silent=False)
+    main = GetNcms(['MonofasicoVarejo'], saveResultProcessInFile=True,
+                   returnOnlyValueNcm=False, silent=False)
     print(main.processAll())
