@@ -1,5 +1,6 @@
 import os
 import sys
+import pandas as pd
 
 dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.append(dirNameSrc)
@@ -20,20 +21,16 @@ class GenerateResult():
         self._connectMongo = ConnectMongoDB()
         self._database = self._connectMongo.getConnetion()
 
-        self._folderSaveResult = os.path.join(dirNameSrc, '..', 'data', 'processed',
-                                              'resultado_analise', f'{getDateTimeNowInFormatStr()}.csv')
-        self._writeHeader()
-
-    def _writeHeader(self):
-        with open(self._folderSaveResult, 'w') as file:
-            file.write("Competencia;Tributado;Monofasico Varejo;Monofasico Atacado;Bebidas Frias\n")
+        self._folderSaveResultResume = os.path.join(dirNameSrc, '..', 'data', 'processed',
+                                                    'resultado_analise',
+                                                    f'resumo_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx')
 
     def _saveResult(self, sumObj):
-        with open(self._folderSaveResult, 'a') as file:
-            file.write(
-                f"{sumObj['competence']};{sumObj['tributado']};{sumObj['monofasico_varejo']};{sumObj['monofasico_atacado']};{sumObj['bebida_fria']}\n")
+        df = pd.DataFrame(sumObj)
+        df.to_excel(self._folderSaveResultResume)
 
     def process(self):
+        listSumObj = []
         year = self._yearStart
         while year <= self._yearEnd:
             months = returnMonthsOfYear(year, monthStart, yearStart, monthEnd, yearEnd)
@@ -62,10 +59,12 @@ class GenerateResult():
                     elif getSum['_id'] == 'MonofasicoAtacadoSN_CST_4' or getSum['_id'] == 'MonofasicoAtacadoSN_CST_6':
                         sumObj['monofasico_atacado'] += getSum['sumTotal']
 
-                self._saveResult(sumObj)
+                listSumObj.append(sumObj.copy())
 
             print('')
             year += 1
+
+        self._saveResult(listSumObj)
 
 
 if __name__ == '__main__':
