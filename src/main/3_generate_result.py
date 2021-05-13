@@ -5,9 +5,8 @@ import pandas as pd
 dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.append(dirNameSrc)
 
-from utils.functions import returnMonthsOfYear, getDateTimeNowInFormatStr
-from dao.sum_value_product import SumValueProduct
-from dao.connect_mongo import ConnectMongoDB
+from utils.functions import getDateTimeNowInFormatStr
+from services.consolidates_result import ConsolidatesResult
 
 
 class GenerateResult():
@@ -18,53 +17,21 @@ class GenerateResult():
         self._monthEnd = monthEnd
         self._yearEnd = yearEnd
 
-        self._connectMongo = ConnectMongoDB()
-        self._database = self._connectMongo.getConnetion()
+        self._consolidateResult = ConsolidatesResult(self._inscricaoFederal, self._monthStart, self._yearStart,
+                                                     self._monthEnd, self._yearEnd)
+        self._listSumObj = self._consolidateResult.consolidate()
 
         self._folderSaveResultResume = os.path.join(dirNameSrc, '..', 'data', 'processed',
                                                     'resultado_analise',
                                                     f'resumo_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx')
 
-    def _saveResult(self, sumObj):
-        df = pd.DataFrame(sumObj)
-        df.to_excel(self._folderSaveResultResume)
+    def _saveResult(self, listSumObj):
+        df = pd.DataFrame(listSumObj)
+        df.to_excel(self._folderSaveResultResume, header=['Competência', 'Tributado', 'Monofásico Varejo', 'Bebidas Frias',
+                                                          'Monofásico Atacado'], index=False, float_format="%.2f")
 
     def process(self):
-        listSumObj = []
-        year = self._yearStart
-        while year <= self._yearEnd:
-            months = returnMonthsOfYear(year, monthStart, yearStart, monthEnd, yearEnd)
-
-            print('\t - ', end='')
-            for month in months:
-                monthYearStr = f'{month:0>2}/{year}'
-                print(monthYearStr, ' ', end='')
-
-                sumObj = {}
-                sumObj['competence'] = f'01/{monthYearStr}'
-                sumObj['tributado'] = 0
-                sumObj['monofasico_varejo'] = 0
-                sumObj['bebida_fria'] = 0
-                sumObj['monofasico_atacado'] = 0
-
-                sumValueProduct = SumValueProduct(self._database, f"notas_{self._inscricaoFederal}", year, month)
-                getSums = sumValueProduct.getSum()
-                for getSum in getSums:
-                    if getSum['_id'] == '':
-                        sumObj['tributado'] = getSum['sumTotal']
-                    elif getSum['_id'] == 'MonofasicoVarejo':
-                        sumObj['monofasico_varejo'] = getSum['sumTotal']
-                    elif getSum['_id'] == 'BebidaFria':
-                        sumObj['bebida_fria'] = getSum['sumTotal']
-                    elif getSum['_id'] == 'MonofasicoAtacadoSN_CST_4' or getSum['_id'] == 'MonofasicoAtacadoSN_CST_6':
-                        sumObj['monofasico_atacado'] += getSum['sumTotal']
-
-                listSumObj.append(sumObj.copy())
-
-            print('')
-            year += 1
-
-        self._saveResult(listSumObj)
+        self._saveResult(self._listSumObj)
 
 
 if __name__ == '__main__':
