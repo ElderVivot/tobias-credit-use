@@ -7,6 +7,8 @@ sys.path.append(dirNameSrc)
 
 from utils.functions import getDateTimeNowInFormatStr
 from services.consolidates_result import ConsolidatesResult
+from dao.connect_mongo import ConnectMongoDB
+from dao.get_list_product import GetListProduct
 
 
 class GenerateResult():
@@ -21,17 +23,30 @@ class GenerateResult():
                                                      self._monthEnd, self._yearEnd)
         self._listSumObj = self._consolidateResult.consolidate()
 
+        self._connectMongo = ConnectMongoDB()
+        self._database = self._connectMongo.getConnetion()
+
+        self._getListProduct = GetListProduct(self._database, f"notas_{self._inscricaoFederal}")
+        self._listProduct = self._getListProduct.getList()
+
         self._folderSaveResultResume = os.path.join(dirNameSrc, '..', 'data', 'processed',
                                                     'resultado_analise',
                                                     f'resumo_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx')
+        self._folderSaveResultDetailed = os.path.join(dirNameSrc, '..', 'data', 'processed',
+                                                      'resultado_analise',
+                                                      f'detalhado_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx')
 
-    def _saveResult(self, listSumObj):
-        df = pd.DataFrame(listSumObj)
-        df.to_excel(self._folderSaveResultResume, header=['Competência', 'Tributado', 'Monofásico Varejo', 'Bebidas Frias',
-                                                          'Monofásico Atacado'], index=False, float_format="%.2f")
+    def _saveResult(self):
+        print('\t - Salvando resultado.')
+        dfListSumObj = pd.DataFrame(self._listSumObj)
+        dfListSumObj.to_excel(self._folderSaveResultResume,
+                              header=['Competência', 'Tributado', 'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
+                              index=False, float_format="%.2f")
+        dfListProduct = pd.DataFrame(self._listProduct)
+        dfListProduct.to_excel(self._folderSaveResultDetailed, index=False, float_format="%.2f")
 
     def process(self):
-        self._saveResult(self._listSumObj)
+        self._saveResult()
 
 
 if __name__ == '__main__':
