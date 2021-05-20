@@ -4,9 +4,11 @@ import pandas as pd
 
 dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.append(dirNameSrc)
+foderToSaveResult = os.path.join(dirNameSrc, '..', 'data', 'processed', 'resultado_analise')
 
 from utils.functions import getDateTimeNowInFormatStr
-from services.consolidates_result import ConsolidatesResult
+from services.consolidates_result_product_per_month import ConsolidatesResultProductPerMonth
+from services.consolidates_result_product_per_ncm import ConsolidatesResultProductPerNcm
 from dao.connect_mongo import ConnectMongoDB
 from dao.get_list_product import GetListProduct
 
@@ -19,29 +21,48 @@ class GenerateResult():
         self._monthEnd = monthEnd
         self._yearEnd = yearEnd
 
-        self._consolidateResult = ConsolidatesResult(self._inscricaoFederal, self._monthStart, self._yearStart,
-                                                     self._monthEnd, self._yearEnd)
-        self._listSumObj = self._consolidateResult.consolidate()
-
         self._connectMongo = ConnectMongoDB()
         self._database = self._connectMongo.getConnetion()
+
+        self._consolidateResultProductPerMonth = ConsolidatesResultProductPerMonth(
+            self._inscricaoFederal, self._monthStart, self._yearStart,
+            self._monthEnd, self._yearEnd
+        )
+        self._listSumResultProductPerMonth = self._consolidateResultProductPerMonth.consolidate()
+
+        self._consolidateResultProductPerNcm = ConsolidatesResultProductPerNcm(self._inscricaoFederal)
+        self._listSumResultProductPerNcm = self._consolidateResultProductPerNcm.consolidate()
 
         self._getListProduct = GetListProduct(self._database, f"notas_{self._inscricaoFederal}")
         self._listProduct = self._getListProduct.getList()
 
-        self._folderSaveResultResume = os.path.join(dirNameSrc, '..', 'data', 'processed',
-                                                    'resultado_analise',
-                                                    f'resumo_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx')
-        self._folderSaveResultDetailed = os.path.join(dirNameSrc, '..', 'data', 'processed',
-                                                      'resultado_analise',
-                                                      f'detalhado_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx')
+        self._folderSaveResultResumeProductPerMonth = os.path.join(
+            foderToSaveResult,
+            f'resumo_por_competencia_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx'
+        )
+        self._folderSaveResultResumeProductPerNcm = os.path.join(
+            foderToSaveResult,
+            f'resumo_por_ncm_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx'
+        )
+        self._folderSaveResultDetailed = os.path.join(
+            foderToSaveResult,
+            f'detalhado_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx'
+        )
 
     def _saveResult(self):
         print('\t - Salvando resultado.')
-        dfListSumObj = pd.DataFrame(self._listSumObj)
-        dfListSumObj.to_excel(self._folderSaveResultResume,
-                              header=['Competência', 'Tributado', 'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
-                              index=False, float_format="%.2f")
+        dfListSumObjProductPerMonth = pd.DataFrame(self._listSumResultProductPerMonth)
+        dfListSumObjProductPerMonth.to_excel(
+            self._folderSaveResultResumeProductPerMonth,
+            header=['CNPJ', 'Competência', 'Tributado', 'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
+            index=False, float_format="%.2f"
+        )
+        dfListSumResultProductPerNcm = pd.DataFrame(self._listSumResultProductPerNcm)
+        dfListSumResultProductPerNcm.to_excel(
+            self._folderSaveResultResumeProductPerNcm,
+            header=['CNPJ', 'NCM', 'Nome NCM', 'Tributado', 'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
+            index=False, float_format="%.2f"
+        )
         dfListProduct = pd.DataFrame(self._listProduct)
         dfListProduct.to_excel(self._folderSaveResultDetailed, index=False, float_format="%.2f")
 

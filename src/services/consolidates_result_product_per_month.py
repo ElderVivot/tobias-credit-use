@@ -5,11 +5,11 @@ dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.append(dirNameSrc)
 
 from utils.functions import returnMonthsOfYear
-from dao.sum_value_product import SumValueProduct
+from dao.sum_value_product_per_month import SumValueProductPerMonth
 from dao.connect_mongo import ConnectMongoDB
 
 
-class ConsolidatesResult():
+class ConsolidatesResultProductPerMonth():
     def __init__(self, inscricaoFederal: str, monthStart: int, yearStart: int, monthEnd: int, yearEnd: int):
         self._inscricaoFederal = inscricaoFederal
         self._monthStart = monthStart
@@ -32,22 +32,25 @@ class ConsolidatesResult():
                 print(monthYearStr, ' ', end='')
 
                 sumObj = {}
+                sumObj['emitente_inscricao_federal'] = self._inscricaoFederal
                 sumObj['competence'] = f'01/{monthYearStr}'
                 sumObj['tributado'] = 0
                 sumObj['monofasico_varejo'] = 0
                 sumObj['bebida_fria'] = 0
                 sumObj['monofasico_atacado'] = 0
 
-                sumValueProduct = SumValueProduct(self._database, f"notas_{self._inscricaoFederal}", year, month)
+                sumValueProduct = SumValueProductPerMonth(self._database, f"notas_{self._inscricaoFederal}", year, month)
                 getSums = sumValueProduct.getSum()
                 for getSum in getSums:
-                    if getSum['_id'] == '':
+                    prodNcmRule = getSum['_id']['prod_ncm_rule']
+
+                    if prodNcmRule == '':
                         sumObj['tributado'] = getSum['sumTotal']
-                    elif getSum['_id'] == 'MonofasicoVarejo':
+                    elif prodNcmRule == 'MonofasicoVarejo':
                         sumObj['monofasico_varejo'] = getSum['sumTotal']
-                    elif getSum['_id'] == 'BebidaFria':
+                    elif prodNcmRule == 'BebidaFria':
                         sumObj['bebida_fria'] = getSum['sumTotal']
-                    elif getSum['_id'] == 'MonofasicoAtacadoSN_CST_4' or getSum['_id'] == 'MonofasicoAtacadoSN_CST_6':
+                    elif prodNcmRule == 'MonofasicoAtacadoSN_CST_4' or prodNcmRule == 'MonofasicoAtacadoSN_CST_6':
                         sumObj['monofasico_atacado'] += getSum['sumTotal']
 
                 listSumObj.append(sumObj.copy())

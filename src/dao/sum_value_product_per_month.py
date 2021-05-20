@@ -8,7 +8,7 @@ dirNameSrc = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.append(dirNameSrc)
 
 
-class SumValueProduct(object):
+class SumValueProductPerMonth(object):
     def __init__(self, connection: Database, nameCollection: str, year: int, month: int):
         self._connection = connection
         self._nameCollection = nameCollection
@@ -19,8 +19,19 @@ class SumValueProduct(object):
     def getSum(self):
         try:
             sumPerNcmRule: Dict[str, str] = self._collection.aggregate([
-                {"$match": {"$and": [{"month_emissao": self._month}, {"year_emissao": self._year}]}},
-                {"$group": {"sumTotal": {"$sum": "$prod_valor_total"}, "_id": "$prod_ncm_rule"}}
+                {
+                    "$match": {
+                        "$and": [{"month_emissao": self._month}, {"year_emissao": self._year}]
+                    }
+                },
+                {
+                    "$group": {
+                        "_id": {
+                            "prod_ncm_rule": "$prod_ncm_rule"
+                        },
+                        "sumTotal": {"$sum": "$prod_valor_total"}
+                    }
+                }
             ])
             return sumPerNcmRule
         except Exception as e:
@@ -33,5 +44,5 @@ if __name__ == '__main__':
     connectMongo = ConnectMongoDB()
     connection = connectMongo.getConnetion()
 
-    main = SumValueProduct(connection, 'nfe_37109097000428', 2017, 10)
+    main = SumValueProductPerMonth(connection, 'notas_14437943000271', 2017, 10)
     # [print(obj) for obj in main.getSum()]
