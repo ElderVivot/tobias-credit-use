@@ -52,6 +52,11 @@ class CompareXmlXNcmRules():
             "prod_unidade": product['unidade'],
             "prod_quantidade": product['quantidade'],
             "prod_valor_unitario": product['valor_unitario'],
+            "prod_valor_produto": product['valor_produto'],
+            "prod_valor_frete": product['valor_frete'],
+            "prod_vseg": product['vseg'],
+            "prod_valor_outros": product['valor_outros'],
+            "prod_valor_desconto": product['valor_desconto'],
             "prod_valor_total": product['valor_total'],
             "prod_ncm_rule": product['nmc_rule']
         }
