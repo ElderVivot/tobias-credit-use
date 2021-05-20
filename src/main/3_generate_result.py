@@ -60,13 +60,15 @@ class GenerateResult():
         dfListSumResultProductPerNcm = pd.DataFrame(self._listSumResultProductPerNcm)
         dfListSumResultProductPerNcm.to_excel(
             self._folderSaveResultResumeProductPerNcm,
-            header=['CNPJ', 'NCM', 'Nome NCM', 'Tributado', 'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
+            header=['CNPJ', 'NCM', 'Nome NCM', 'Quantidade deste Ncm', 'Tributado',
+                    'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
             index=False, float_format="%.2f"
         )
         dfListProduct = pd.DataFrame(self._listProduct)
         dfListProduct.to_excel(self._folderSaveResultDetailed, index=False, float_format="%.2f")
 
     def process(self):
+        # pass
         self._saveResult()
 
 
