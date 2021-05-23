@@ -46,12 +46,34 @@ def minimalizeSpaces(text):
     return _result
 
 
+def returnDataInDictOrArray(data: Any, arrayStructureDataReturn: List[Any], valueDefault='') -> Any:
+    """
+    :data: vector, matrix ou dict with data -> example: {"name": "Obama", "adress": {"zipCode": "1234567"}}
+    :arrayStructureDataReturn: array in order with position of vector/matriz or name property of dict to \
+    return -> example: ['adress', 'zipCode'] -> return is '1234567'
+    """
+    try:
+        dataAccumulated = ''
+        for i in range(len(arrayStructureDataReturn)):
+            if i == 0:
+                dataAccumulated = data[arrayStructureDataReturn[i]]
+            else:
+                dataAccumulated = dataAccumulated[arrayStructureDataReturn[i]]
+        return dataAccumulated
+    except Exception:
+        return valueDefault
+
+
 def treatsFieldAsText(value):
     try:
         value = str(value)
         return minimalizeSpaces(removeCharsSpecial(value.strip().upper()))
     except Exception:
         return ""
+
+
+def treatsFieldAsTextInDictOrArray(data: Any, arrayStructureDataReturn: List[Any], valueDefault=''):
+    return treatsFieldAsText(returnDataInDictOrArray(data, arrayStructureDataReturn, valueDefault))
 
 
 def treatsFieldAsDecimal(value, numberOfDecimalPlaces=2):
@@ -72,6 +94,10 @@ def treatsFieldAsDecimal(value, numberOfDecimalPlaces=2):
         return float(value)
     except Exception:
         return float(0)
+
+
+def treatsFieldAsDecimalInDictOrArray(data: Any, arrayStructureDataReturn: List[Any], valueDefault='', numberOfDecimalPlaces=2):
+    return treatsFieldAsDecimal(returnDataInDictOrArray(data, arrayStructureDataReturn, valueDefault), numberOfDecimalPlaces)
 
 
 def treatsFieldAsDate(valorCampo, formatoData=1, getWithHour=False):
@@ -111,6 +137,11 @@ def treatsFieldAsDate(valorCampo, formatoData=1, getWithHour=False):
         return None
 
 
+def treatsFieldAsDateInDictOrArray(data: Any, arrayStructureDataReturn: List[Any], valueDefault='',
+                                   formatoData=1, getWithHour=False):
+    return treatsFieldAsDate(returnDataInDictOrArray(data, arrayStructureDataReturn, valueDefault), formatoData, getWithHour)
+
+
 def treatsFieldAsNumber(value, isInt=True):
     if type(value) == int:
         return value
@@ -129,22 +160,8 @@ def treatsFieldAsNumber(value, isInt=True):
         return 0
 
 
-def returnDataInDictOrArray(data: Any, arrayStructureDataReturn: List[Any], valueDefault='') -> Any:
-    """
-    :data: vector, matrix ou dict with data -> example: {"name": "Obama", "adress": {"zipCode": "1234567"}}
-    :arrayStructureDataReturn: array in order with position of vector/matriz or name property of dict to \
-    return -> example: ['adress', 'zipCode'] -> return is '1234567'
-    """
-    try:
-        dataAccumulated = ''
-        for i in range(len(arrayStructureDataReturn)):
-            if i == 0:
-                dataAccumulated = data[arrayStructureDataReturn[i]]
-            else:
-                dataAccumulated = dataAccumulated[arrayStructureDataReturn[i]]
-        return dataAccumulated
-    except Exception:
-        return valueDefault
+def treatsFieldAsNumberInDictOrArray(data: Any, arrayStructureDataReturn: List[Any], valueDefault='', isInt=True):
+    return treatsFieldAsNumber(returnDataInDictOrArray(data, arrayStructureDataReturn, valueDefault), isInt)
 
 
 def removeAnArrayFromWithinAnother(arraySet=[]):

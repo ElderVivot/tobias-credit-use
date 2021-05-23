@@ -10,7 +10,7 @@ from utils.functions import getDateTimeNowInFormatStr
 from services.consolidates_result_product_per_month import ConsolidatesResultProductPerMonth
 from services.consolidates_result_product_per_ncm import ConsolidatesResultProductPerNcm
 from dao.connect_mongo import ConnectMongoDB
-from dao.get_list_product import GetListProduct
+from services.save_products_in_excel import SaveProductsInExcel
 
 
 class GenerateResult():
@@ -24,18 +24,21 @@ class GenerateResult():
         self._connectMongo = ConnectMongoDB()
         self._database = self._connectMongo.getConnetion()
 
+        self.__instanceDatasToSave()
+        self.__folderToSaveData()
+
+    def __instanceDatasToSave(self):
         self._consolidateResultProductPerMonth = ConsolidatesResultProductPerMonth(
             self._inscricaoFederal, self._monthStart, self._yearStart,
             self._monthEnd, self._yearEnd
         )
-        self._listSumResultProductPerMonth = self._consolidateResultProductPerMonth.consolidate()
 
         self._consolidateResultProductPerNcm = ConsolidatesResultProductPerNcm(self._inscricaoFederal)
-        self._listSumResultProductPerNcm = self._consolidateResultProductPerNcm.consolidate()
 
-        self._getListProduct = GetListProduct(self._database, f"notas_{self._inscricaoFederal}")
-        self._listProduct = self._getListProduct.getList()
+        self._saveProductsInExcel = SaveProductsInExcel(self._inscricaoFederal, self._monthStart, self._yearStart,
+                                                        self._monthEnd, self._yearEnd)
 
+    def __folderToSaveData(self):
         self._folderSaveResultResumeProductPerMonth = os.path.join(
             foderToSaveResult,
             f'resumo_por_competencia_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx'
@@ -44,19 +47,21 @@ class GenerateResult():
             foderToSaveResult,
             f'resumo_por_ncm_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx'
         )
-        self._folderSaveResultDetailed = os.path.join(
-            foderToSaveResult,
-            f'detalhado_{self._inscricaoFederal}_{getDateTimeNowInFormatStr()}.xlsx'
-        )
 
     def _saveResult(self):
-        print('\t - Salvando resultado.')
+        print('\t- Salvando resultados.')
+
+        print('\t\t- Consolidado por mês')
+        self._listSumResultProductPerMonth = self._consolidateResultProductPerMonth.consolidate()
         dfListSumObjProductPerMonth = pd.DataFrame(self._listSumResultProductPerMonth)
         dfListSumObjProductPerMonth.to_excel(
             self._folderSaveResultResumeProductPerMonth,
             header=['CNPJ', 'Competência', 'Tributado', 'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
             index=False, float_format="%.2f"
         )
+
+        print('\t\t- Consolidado por NCM')
+        self._listSumResultProductPerNcm = self._consolidateResultProductPerNcm.consolidate()
         dfListSumResultProductPerNcm = pd.DataFrame(self._listSumResultProductPerNcm)
         dfListSumResultProductPerNcm.to_excel(
             self._folderSaveResultResumeProductPerNcm,
@@ -64,8 +69,9 @@ class GenerateResult():
                     'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
             index=False, float_format="%.2f"
         )
-        dfListProduct = pd.DataFrame(self._listProduct)
-        dfListProduct.to_excel(self._folderSaveResultDetailed, index=False, float_format="%.2f")
+
+        print('\t\t- Lista de Produtos')
+        self._saveProductsInExcel.saveData()
 
     def process(self):
         # pass

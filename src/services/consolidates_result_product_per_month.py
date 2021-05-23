@@ -26,10 +26,10 @@ class ConsolidatesResultProductPerMonth():
         while year <= self._yearEnd:
             months = returnMonthsOfYear(year, self._monthStart, self._yearStart, self._monthEnd, self._yearEnd)
 
-            print('\t - ', end='')
+            # print('\t - ', end='')
             for month in months:
                 monthYearStr = f'{month:0>2}/{year}'
-                print(monthYearStr, ' ', end='')
+                # print(monthYearStr, ' ', end='')
 
                 sumObj = {}
                 sumObj['emitente_inscricao_federal'] = self._inscricaoFederal
@@ -55,7 +55,7 @@ class ConsolidatesResultProductPerMonth():
 
                 listSumObj.append(sumObj.copy())
 
-            print('')
+            # print('')
             year += 1
 
         return listSumObj

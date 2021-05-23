@@ -8,6 +8,7 @@ pandas = "*"
 xmltodict = "*"
 pymongo = "*"
 openpyxl = "*"
+xlsxwriter = "*"
 
 [dev-packages]
 
