@@ -34,6 +34,7 @@ class ConsolidatesResultProductPerMonth():
                 sumObj = {}
                 sumObj['emitente_inscricao_federal'] = self._inscricaoFederal
                 sumObj['competence'] = f'01/{monthYearStr}'
+                sumObj['cfop_nao_tributado'] = 0
                 sumObj['tributado'] = 0
                 sumObj['monofasico_varejo'] = 0
                 sumObj['bebida_fria'] = 0
@@ -44,7 +45,9 @@ class ConsolidatesResultProductPerMonth():
                 for getSum in getSums:
                     prodNcmRule = getSum['_id']['prod_ncm_rule']
 
-                    if prodNcmRule == '':
+                    if prodNcmRule == 'CFOPNaoTributado':
+                        sumObj['cfop_nao_tributado'] = getSum['sumTotal']
+                    elif prodNcmRule == '':
                         sumObj['tributado'] = getSum['sumTotal']
                     elif prodNcmRule == 'MonofasicoVarejo':
                         sumObj['monofasico_varejo'] = getSum['sumTotal']

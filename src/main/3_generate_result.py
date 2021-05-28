@@ -56,7 +56,8 @@ class GenerateResult():
         dfListSumObjProductPerMonth = pd.DataFrame(self._listSumResultProductPerMonth)
         dfListSumObjProductPerMonth.to_excel(
             self._folderSaveResultResumeProductPerMonth,
-            header=['CNPJ', 'Competência', 'Tributado', 'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
+            header=['CNPJ', 'Competência', 'CFOP Não Tributado', 'Tributado',
+                    'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
             index=False, float_format="%.2f"
         )
 
@@ -65,7 +66,7 @@ class GenerateResult():
         dfListSumResultProductPerNcm = pd.DataFrame(self._listSumResultProductPerNcm)
         dfListSumResultProductPerNcm.to_excel(
             self._folderSaveResultResumeProductPerNcm,
-            header=['CNPJ', 'NCM', 'Nome NCM', 'Quantidade deste Ncm', 'Tributado',
+            header=['CNPJ', 'NCM', 'Nome NCM', 'Quantidade deste Ncm', 'CFOP Não Tributado', 'Tributado',
                     'Monofásico Varejo', 'Bebidas Frias', 'Monofásico Atacado'],
             index=False, float_format="%.2f"
         )

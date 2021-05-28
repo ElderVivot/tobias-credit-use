@@ -28,6 +28,7 @@ class ConsolidatesResultProductPerNcm():
                 self._listSumObj[index]['monofasico_varejo'] += self._sumObj['monofasico_varejo']
                 self._listSumObj[index]['bebida_fria'] += self._sumObj['bebida_fria']
                 self._listSumObj[index]['monofasico_atacado'] += self._sumObj['monofasico_atacado']
+                self._listSumObj[index]['cfop_nao_tributado'] += self._sumObj['cfop_nao_tributado']
 
         if findThisNcm is False:
             self._listSumObj.append(self._sumObj.copy())
@@ -42,12 +43,15 @@ class ConsolidatesResultProductPerNcm():
             self._sumObj['prod_ncm'] = getSum['_id']['prod_ncm']
             self._sumObj['prod_name_ncm'] = getSum['_id']['prod_name_ncm']
             self._sumObj['quantidade_deste_ncm'] = getSum['qtdTotal']
+            self._sumObj['cfop_nao_tributado'] = 0
             self._sumObj['tributado'] = 0
             self._sumObj['monofasico_varejo'] = 0
             self._sumObj['bebida_fria'] = 0
             self._sumObj['monofasico_atacado'] = 0
 
-            if prodNcmRule == '':
+            if prodNcmRule == 'CFOPNaoTributado':
+                self._sumObj['cfop_nao_tributado'] = getSum['sumTotal']
+            elif prodNcmRule == '':
                 self._sumObj['tributado'] = getSum['sumTotal']
             elif prodNcmRule == 'MonofasicoVarejo':
                 self._sumObj['monofasico_varejo'] = getSum['sumTotal']

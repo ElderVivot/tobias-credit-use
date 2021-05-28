@@ -8,6 +8,8 @@ sys.path.append(dirNameSrc)
 
 from utils.read_json import readJson
 from utils.functions import getDateTimeNowInFormatStr
+from services.cfops.list_tributado import ListCfopTributado
+from services.cfops.list_devolucao import ListCfopDevolucao
 from services.compare_xml_x_ncm_rules import CompareXmlXNcmRules
 from main.get_ncms_rules import GetNcms
 from main.get_ncms_name import GetNcmsName
@@ -25,12 +27,20 @@ class AnalyseNcmXml():
         self._listNfeAlreadyRead: List[str] = []
         self._folderSaveResult = os.path.join(dirNameSrc, '..', 'data', 'processed',
                                               'resultado_analise', f'{getDateTimeNowInFormatStr()}.csv')
+        self._instancesOfClasses()
 
+    def _instancesOfClasses(self):
         getNcms = GetNcms(envJson['rules_of_xml'], saveResultProcessInFile=False, returnOnlyValueNcm=True, silent=True)
         self._listNcms = getNcms.processAll()
 
         getNcmsName = GetNcmsName(saveResultProcessInFile=False, silent=True)
         self._listNcmsName = getNcmsName.processAll()
+
+        listCfopTributado = ListCfopTributado()
+        self._ListCfopTributado = listCfopTributado.getList()
+
+        listCfopDevolucao = ListCfopDevolucao()
+        self._ListCfopDevolucao = listCfopDevolucao.getList()
 
         self._connectMongo = ConnectMongoDB()
         self._database = self._connectMongo.getConnetion()
@@ -44,7 +54,9 @@ class AnalyseNcmXml():
                 return 'AlreadyProcessed'
 
             compareXmlXNcmRules = CompareXmlXNcmRules(
-                self._database, nfe, self._listNcmsName, self._listNcms, self._folderSaveResult)
+                self._database, nfe,
+                self._listNcmsName, self._listNcms,
+                self._ListCfopTributado, self._ListCfopDevolucao)
             compareXmlXNcmRules.process()
         # copy files that dont read to analyse whice is problem
         else:
