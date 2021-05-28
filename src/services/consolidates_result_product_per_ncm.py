@@ -23,12 +23,11 @@ class ConsolidatesResultProductPerNcm():
         for index, sumObj in enumerate(self._listSumObj):
             if sumObj['prod_ncm'] == self._sumObj['prod_ncm']:
                 findThisNcm = True
-                self._listSumObj[index]['qtdTotal'] += self._sumObj['qtdTotal']
+                self._listSumObj[index]['cfop_nao_tributado'] += self._sumObj['cfop_nao_tributado']
                 self._listSumObj[index]['tributado'] += self._sumObj['tributado']
                 self._listSumObj[index]['monofasico_varejo'] += self._sumObj['monofasico_varejo']
                 self._listSumObj[index]['bebida_fria'] += self._sumObj['bebida_fria']
                 self._listSumObj[index]['monofasico_atacado'] += self._sumObj['monofasico_atacado']
-                self._listSumObj[index]['cfop_nao_tributado'] += self._sumObj['cfop_nao_tributado']
 
         if findThisNcm is False:
             self._listSumObj.append(self._sumObj.copy())
