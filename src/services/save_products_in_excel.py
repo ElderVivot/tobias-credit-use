@@ -115,7 +115,7 @@ class SaveProductsInExcel():
         self._sheet.write(self._row, 20, valorFrete, self._cell_format_money)
         self._sheet.write(self._row, 21, valorOutros, self._cell_format_money)
         self._sheet.write(self._row, 22, valorVSeg, self._cell_format_money)
-        self._sheet.write(self._row, 23, valorTotal), self._cell_format_money
+        self._sheet.write(self._row, 23, valorTotal, self._cell_format_money)
 
     def __closeWorkbook(self):
         self._workbook.close()
