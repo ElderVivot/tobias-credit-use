@@ -1,4 +1,6 @@
-data/
+data/processed/
+data/ncms/base/
+data/ncms/tests/
 venv/
 __pycache__/
 env.json

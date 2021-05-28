@@ -1,0 +1,400 @@
+{
+    "_id": "5f237c0df0316232999f3bf6",
+    "ncm": "14042010",
+    "processed": true,
+    "exportacao": {
+        "14042010": "Produtos vegetais não especificados nem compreendidos noutras posições.,Línteres de algodão,Em bruto",
+        "aliquota": {
+            "simples_nacional": {
+                "pis": "Vide observações.",
+                "cofins": "Vide observações.",
+                "dispositivo_legal": "Lei Complementar nº 123/2006"
+            },
+            "regime_cumulativo": {
+                "pis": "0,00%",
+                "cofins": "0,00%",
+                "dispositivo_legal": "Constituição Federal,artigo 149, 2ª,inciso I;IN RFB nº 1.911/2019, artigo 21, inciso I"
+            },
+            "regime_nao_cumulativo": {
+                "pis": "0,00%",
+                "cofins": "0,00%",
+                "dispositivo_legal": "Constituição Federal,artigo 149, 2ª,inciso I;IN RFB nº 1.911/2019, artigo 21, inciso I; Lei nº 10.637/2002, artigo 5º, inciso I; Lei nº 10.833/2003, artigo 6º, inciso I"
+            }
+        },
+        "observacoes": [
+            {
+                "index": 0,
+                "titulo": "SIMPLES NACIONAL",
+                "comentario": "Em relação às receitas decorrentes de exportação, inclusive as vendas realizadas por meio de comercial exportadora ou sociedade de propósito específico (observado o  7º do artigo 18 e o artigo 56 da Lei Complementar nº 123/2006), serão desconsiderados no cálculo do Simples Nacional, conforme o caso, os percentuais relativos ao PIS e a COFINS (Lei Complementar nº 123/2006, artigo 18,  14).As receitas brutas auferidas ou recebidas no mercado interno e externo devem ser consideradas em separado, para aplicação das alíquotas correspondentes ao anexo de enquadramento (Lei Complementar nº 123/2006, artigo 3º,  15)."
+            },
+            {
+                "index": 1,
+                "titulo": "REGIME CUMULATIVO",
+                "comentario": "Não há incidência do PIS e da COFINS sobre as receitas decorrentes das exportações de mercadorias (Constituição Federal,artigo 149, 2ª,inciso I;IN RFB nº 1.911/2019, artigo 21, inciso I)."
+            },
+            {
+                "index": 2,
+                "titulo": "REGIME NÃO CUMULATIVO",
+                "comentario": "Não há incidência do PIS e da COFINS sobre as receitas decorrentes das exportações de mercadorias (Constituição Federal,artigo 149, 2ª,inciso I;IN RFB nº 1.911/2019, artigo 21, inciso I; Lei nº 10.637/2002, artigo 5º, inciso I; Lei nº 10.833/2003, artigo 6º, inciso I)."
+            },
+            {
+                "index": 3,
+                "titulo": "PERMISSIONÁRIAS DE LOJAS FRANCAS",
+                "comentario": "Caberá a isenção do PIS e da COFINS para as pessoas jurídicas permissionárias de Lojas Francas decorrente da venda de mercadoria nacional ou estrangeira a passageiros de viagens internacionais, na saída do país, somente quando o pagamento da mercadoria represente ingresso de divisas (Constituição Federal, artigo 149,  2ª, inciso I; MP nª 2.158-35/2001, artigo 14, inciso II e  1º; Lei nº 10.637/2002, artigo 5º, inciso I; Lei nº 10.833/2003, artigo 6º, inciso I; Portaria MF nª 112/2008, artigo 10,  4ª)."
+            },
+            {
+                "index": 4,
+                "titulo": "CÓDIGO DE SITUAÇÃO TRIBUTÁRIA (CST)",
+                "comentario": "Os Códigos de Situação Tributária estão previstos na IN RFB nº 1.009/2010. Com relação ao Simples Nacional, a resposta nº 97 das perguntas e respostas da EFD-Contribuições orienta sobre o CST a ser utilizado pelo referido regime tributário."
+            }
+        ],
+        "codigo_da_situacao_tributaria_cst": {
+            "simples_nacional": {
+                "entrada": {
+                    "98": "Outras Operações de Entrada."
+                },
+                "saida": {
+                    "8": "Operação sem Incidência da Contribuição."
+                }
+            },
+            "regime_cumulativo": {
+                "entrada": {
+                    "70": "Operação de Aquisição sem Direito a Crédito."
+                },
+                "saida": {
+                    "8": "Operação sem Incidência da Contribuição."
+                }
+            },
+            "regime_nao_cumulativo": {
+                "entrada": {
+                    "50": "Vinculada Exclusivamente a Receita Tributada no Mercado Interno.",
+                    "51": "Vinculada Exclusivamente a Receita Não Tributada no Mercado Interno.",
+                    "52": "Vinculada Exclusivamente a Receita de Exportação.",
+                    "53": "Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno.",
+                    "54": "Vinculada a Receitas Tributadas no Mercado Interno e de Exportação.",
+                    "55": "Vinculada a Receitas Não-Tributadas no Mercado Interno e de Exportação.",
+                    "56": "Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno, e de Exportação.",
+                    "70": "Operação de Aquisição sem Direito a Crédito."
+                },
+                "saida": {
+                    "8": "Operação sem Incidência da Contribuição."
+                }
+            }
+        },
+        "efd_contribuicoes": [
+            {
+                "index": 0,
+                "titulo": "geral",
+                "comentario": "Escrituração na saída da mercadoria/produto"
+            },
+            {
+                "index": 1,
+                "titulo": "SIMPLES NACIONAL",
+                "comentario": "As microempresas e as empresas de pequeno porte enquadradas no Simples Nacional, relativamente aos períodos abrangidos por esse regime, estão dispensadas da apresentação da EFD-Contribuições (Instrução Normativa RFB nº 1.252/2012, artigo 5º, inciso I)."
+            },
+            {
+                "index": 2,
+                "titulo": "REGIME CUMULATIVO",
+                "comentario": "Para o regime de caixa, a escrituração será consolidada nos Registros F500, F525 e 1900. No regime de competência, a escrituração poderá ser simplificada nos Registros F550 e 1900, sem prejuízo da opção pela escrituração detalhada, nos Registros C100 e filhos (visão documental) ou nos Registros C180 e filhos (visão consolidada)."
+            },
+            {
+                "index": 3,
+                "titulo": "REGIME NÃO CUMULATIVO",
+                "comentario": "A escrituração será nos Registros C100 e filhos (visão documental) ou nos Registros C180 e filhos (visão consolidada)."
+            },
+            {
+                "index": 4,
+                "titulo": "NATUREZA DA RECEITA",
+                "comentario": "Para fins de escrituração das operações de saída, de acordo com a Tabela 4.3.15 disponibilizada no Portal Sped, na EFD-Contribuições, a natureza da receita será:- regime cumulativo: 999- regime não cumulativo (exportação de mercadorias para o exterior): 401- regime não cumulativo (vendas, com o fim específico de exportação, a empresa comercial exportadora constituída nos termos do Decreto-Lei nº 1.248/72, ou simplesmente registrada na Secretaria de Comércio Exterior (Secex) do Ministério do Desenvolvimento, Indústria e Comércio Exterior): 403"
+            }
+        ]
+    },
+    "importacao": {
+        "14042010": "Produtos vegetais não especificados nem compreendidos noutras posições.,Línteres de algodão,Em bruto",
+        "aliquota": {},
+        "observacoes": [
+            {
+                "index": 0,
+                "titulo": "INCIDÊNCIA",
+                "comentario": "O PIS/Pasep-Importação e a COFINS-Importação incidem sobre a entrada de bens estrangeiros em território nacional e sua base para tributação é o valor aduaneiro pago (Lei nº 10.865/2004, artigos 3º, inciso I e 7º, inciso I).São considerados admitidos em território nacional os bens que constem como importados e os extraviados (desde que, seja apurado pela administração aduaneira), exceto, às malas e às remessas postais internacionais e mercadoria importada a granel que, por sua natureza ou condições de manuseio na descarga (sujeita a quebra ou a decréscimo) caso o extravio não seja superior a 1%. Caso seja superior, será necessário recolhimento do PIS/Pasep-Importação e COFINS-importação em relação ao que exceder a 1% (Lei nº 10.865/2004, artigo 3º,  3º)."
+            },
+            {
+                "index": 1,
+                "titulo": "FATO GERADOR",
+                "comentario": "O fato gerador do PIS/Pasep-Importação e COFINS-importação, segundo do artigo 4º da Lei nº 10.865/2004 será:a) na data do registro da declaração de importação (DI) de bens submetidos a despacho para consumo;b) no dia do lançamento do correspondente crédito tributário, quando se tratar de bens constantes de manifesto ou de outras declarações de efeito equivalente, cujo extravio ou avaria for apurado pela autoridade aduaneira;c) na data do vencimento do prazo de permanência dos bens em recinto alfandegado, se iniciado o respectivo despacho aduaneiro antes de aplicada a pena de perdimento, previsto no artigo 18 da Lei nº 9.779/99."
+            },
+            {
+                "index": 2,
+                "titulo": "CONTRIBUINTES",
+                "comentario": "O importador, entendido como, pessoa física ou jurídica (optante pelo Simples Nacional, regime cumulativo ou não cumulativo) que promova a entrada de bens estrangeiros no território nacional, são contribuintes do PIS/Pasep-Importação e da COFINS-Importação. São equiparados a importador, o destinatário de remessa postal internacional indicado pelo respectivo remetente e o adquirente de mercadoria cuja armazenagem dessa mercadoria estrangeira será em recinto alfandegado de uso público (Lei nº 10.865/2004, artigo 5º)."
+            },
+            {
+                "index": 3,
+                "titulo": "RESPONSÁVEIS SOLIDÁRIOS",
+                "comentario": "São responsáveis solidários pelo recolhimento, o adquirente de bens estrangeiros (no caso de importação realizada por sua conta e ordem, por intermédio de pessoa jurídica importadora); o transportador (quando transportar bens procedentes do exterior ou sob controle aduaneiro, inclusive em percurso interno); o representante (no País, do transportador estrangeiro); o depositário (assim considerado qualquer pessoa incumbida da custódia de bem sob controle aduaneiro); e o expedidor, o operador de transporte multimodal ou qualquer subcontratado para a realização do transporte multimodal (Lei nº 10.865/2004, artigo 6º)."
+            },
+            {
+                "index": 4,
+                "titulo": "REGRA GERAL",
+                "comentario": "A entrada de bens estrangeiros no território nacional sujeita-se às alíquotas de 2,10% (PIS/Pasep-Importação) e 9,65% (COFINS-Importação), exceto para os produtos relacionados nos parágrafos 1º, 2º, 3º, 5º, 8º, 9º, 9º-A, 10, 11, 12, 15 e 19 do artigo 8º da Lei nº 10.865/2004."
+            },
+            {
+                "index": 5,
+                "titulo": "CRÉDITO",
+                "comentario": "REGIME NÃO CUMULATIVO - As pessoas jurídicas importadoras, tributadas pelo regime não cumulativo, poderão descontar créditos de PIS/Pasep-Importação e da COFINS-Importação em relação a importação de bens adquiridos para revenda; utilizados como insumo na prestação de serviços e na produção ou fabricação de bens ou produtos destinados à venda, inclusive combustível e lubrificantes, aluguéis e contraprestações de arrendamento mercantil de prédios, máquinas e equipamentos, embarcações e aeronaves, utilizados na atividade da empresa; e máquinas, equipamentos e outros bens incorporados ao ativo imobilizado, adquiridos para locação a terceiros ou para utilização na produção de bens destinados à venda ou na prestação de serviços (Lei nº 10.865/2004, artigo 15).O crédito será em relação às contribuições efetivamente pagas na importação e caso não seja utilizado no mês, poderá ser aproveitado nos meses subsequentes (Lei nº 10.865/2004, artigo 15,  1º e 2º). Caso a pessoa jurídica esteja sujeita a apenas uma parte de suas receitas pela incidência não-cumulativa, o crédito é somente em relação aos custos, despesas e encargos vinculados a essas receitas (Lei nº 10.865/2004, artigo 15,  5º)."
+            },
+            {
+                "index": 6,
+                "titulo": "CRÉDITO",
+                "comentario": "IMPORTAÇÃO POR CONTA E ORDEM DE TERCEIROS - Na importação por conta e ordem de terceiros, os créditos de PIS/Pasep-Importação e da COFINS-Importação, devem ser aproveitados pelo encomendante (Lei nº 10.865/2004, artigo 18)."
+            },
+            {
+                "index": 7,
+                "titulo": "VEDAÇÃO AO CRÉDITO",
+                "comentario": "É vedada a utilização do crédito nos casos de pessoa jurídica sujeita a tributação de suas receitas pelo regime cumulativo para PIS e COFINS, mesmo sendo optante pelo lucro real ou pela revendedora de mercadorias em relação às quais a contribuição seja exigida da empresa vendedora, na condição de substituta tributária (Lei nº 10.865/2004, artigo 16).Também é vedado utilização de crédito, nos casos de importação efetuada com isenção, na hipótese de os produtos serem revendidos ou utilizados como insumo em produtos sujeitos à alíquota zero, isentos ou não alcançados pela contribuição, inclusive na hipótese, de bens importados sob o regime aduaneiro especial de drawback, na modalidade de isenção em qualquer caso (Lei nº 10.865/2004, artigo 16,  1º e 2º)."
+            },
+            {
+                "index": 8,
+                "titulo": "DARF",
+                "comentario": "O recolhimento do PIS/Pasep-Importação e da COFINS-Importação, será mediante DARF, nos códigos 5602 e 5629, respectivamente. Os pagamentos devem ser efetuados na data do registro da declaração de importação (DI) ou na data do vencimento do prazo de permanência do bem no recinto alfandegado (Lei nº 10.865/2004, artigo 13, inciso I)."
+            }
+        ],
+        "codigo_da_situacao_tributaria_cst": {
+            "simples_nacional": {
+                "entrada": {
+                    "98": "Outras Operações de Entrada."
+                }
+            },
+            "regime_cumulativo": {
+                "entrada": {
+                    "70": "Operação de Aquisição sem Direito a Crédito."
+                }
+            },
+            "regime_nao_cumulativo": {
+                "entrada": {
+                    "50": "Vinculada Exclusivamente a Receita Tributada no Mercado Interno.",
+                    "51": "Vinculada Exclusivamente a Receita Não Tributada no Mercado Interno.",
+                    "52": "Vinculada Exclusivamente a Receita de Exportação.",
+                    "53": "Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno.",
+                    "54": "Vinculada a Receitas Tributadas no Mercado Interno e de Exportação.",
+                    "55": "Vinculada a Receitas Não-Tributadas no Mercado Interno e de Exportação.",
+                    "56": "Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno, e de Exportação.",
+                    "70": "Operação de Aquisição sem Direito a Crédito."
+                }
+            }
+        },
+        "efd_contribuicoes": [
+            {
+                "index": 0,
+                "titulo": "geral",
+                "comentario": "Escrituração na entrada da mercadoria/produto"
+            },
+            {
+                "index": 1,
+                "titulo": "SIMPLES NACIONAL",
+                "comentario": "As microempresas e as empresas de pequeno porte enquadradas no Simples Nacional, relativamente aos períodos abrangidos por esse regime, estão dispensadas da apresentação da EFD-Contribuições (Instrução Normativa RFB nº 1.252/2012, artigo 5º, inciso I)."
+            },
+            {
+                "index": 2,
+                "titulo": "REGIME CUMULATIVO",
+                "comentario": "As operações de entrada estão dispensadas de escrituração (Perguntas e respostas da EFD-Contribuições disponível no Portal Sped, nº 25)."
+            },
+            {
+                "index": 3,
+                "titulo": "REGIME NÃO CUMULATIVO",
+                "comentario": "A escrituração será nos Registros C100 e filhos (visão documental) ou nos Registros C180 e filhos (visão consolidada) somente nos casos de operações geradoras de crédito - CST 50 a 56 (Perguntas e respostas da EFD-Contribuições disponível no Portal Sped, nº 11).Caso a operação geradora de crédito não esteja amparada em documento fiscal, a mesma deve ser escriturada no Registro F100 (Perguntas e respostas da EFD-Contribuições disponível no Portal Sped, nº 76)."
+            },
+            {
+                "index": 4,
+                "titulo": "NATUREZA DO CRÉDITO",
+                "comentario": "Para fins de escrituração das operações de entrada com direito a crédito, originários da importação de bens em geral, de acordo com a Tabela 4.3.17 disponibilizada no Portal Sped, na EFD-Contribuições, a natureza do crédito será:- Bens em geral: 903"
+            }
+        ]
+    },
+    "regra_geral": {
+        "14042010": "Produtos vegetais não especificados nem compreendidos noutras posições.,Línteres de algodão,Em bruto",
+        "aliquota": {
+            "simples_nacional": {
+                "pis": "Vide observações.",
+                "cofins": "Vide observações.",
+                "dispositivo_legal": "Lei Complementar nº 123/2006"
+            },
+            "regime_cumulativo": {
+                "pis": "0,65%",
+                "cofins": "3,00%",
+                "dispositivo_legal": "Lei nº 9.715/98, artigo 8º, inciso I; Lei nº 9.718/98, artigo 8º"
+            },
+            "regime_nao_cumulativo": {
+                "pis": "1,65%",
+                "cofins": "7,60%",
+                "dispositivo_legal": "Lei nº 10.637/2002, artigo 2º; Lei nº 10.833/2003, artigo 2º"
+            }
+        },
+        "observacoes": [
+            {
+                "index": 0,
+                "titulo": "REGRA GERAL",
+                "comentario": "O código NCM pesquisado não se encontra dentre os produtos com benefícios fiscais de PIS e COFINS previstos em legislação. Antes de aplicar as alíquotas correspondentes ao regime tributário da pessoa jurídica é recomendado analisar as outras guias."
+            },
+            {
+                "index": 1,
+                "titulo": "CONDIÇÃO DO ADQUIRENTE",
+                "comentario": "Antes de aplicar a alíquota básica, é importante verificar se a pessoa jurídica adquirente é habilitada em algum regime especial, se está localizada na Zona Franca de Manaus (ZFM) ou em Área de Livre Comércio (ALC), e se a receita é proveniente de exportação de mercadorias."
+            },
+            {
+                "index": 2,
+                "titulo": "SIMPLES NACIONAL",
+                "comentario": "A tributação do PIS e da COFINS será determinada conforme os percentuais de repartição das referidas contribuições (aplicados sobre a alíquota efetiva utilizada para apuração do DAS) constantes no Anexo de enquadramento.Nos casos de estabelecimento comercial importador e a saída das mercadorias seja de procedência estrangeira, estará equiparada a industrial pela legislação do IPI, tributando dessa forma pelo Anexo II, conforme o Ato Declaratório Interpretativo RFB nª 01/2018."
+            },
+            {
+                "index": 3,
+                "titulo": "DARF",
+                "comentario": "As empresas optantes pelo regime cumulativo recolherão o PIS e a COFINS em DARF, nos códigos 8109 e 2172, respectivamente.Para o regime não cumulativo os códigos serão 6912 e 5856.O pagamento do PIS e da COFINS deverão ser efetuados até o 25º dia do mês subsequente ao mês de ocorrência dos fatos geradores (Lei nº 11.933/2009, artigo 1º). Se o dia do vencimento não for dia útil, considerar-se-á antecipado o prazo para o primeiro dia útil que o anteceder.ATENÇÃO: Em razão do enfrentamento da pandemia causada pelo Coronavírus, foram prorrogados os prazos de recolhimento do PIS e da COFINS (regimes cumulativo e não cumulativo), referente os meses de março, abril e maio de 2020, para respectivamente, 25.08.2020, 23.10.2020 e 25.11.2020, conforme as Portarias ME nª 139/2020 e nª 245/2020."
+            },
+            {
+                "index": 4,
+                "titulo": "CÓDIGO DE SITUAÇÃO TRIBUTÁRIA (CST)",
+                "comentario": "Os Códigos de Situação Tributária estão previstos na IN RFB nº 1.009/2010. Com relação ao Simples Nacional, a resposta nº 97 das perguntas e respostas da EFD-Contribuições orienta sobre o CST a ser utilizado pelo referido regime tributário."
+            }
+        ],
+        "codigo_da_situacao_tributaria_cst": {
+            "simples_nacional": {
+                "entrada": {
+                    "98": "Outras Operações de Entrada."
+                },
+                "saida": {
+                    "49": "99 (Outras Operações) e 49 (Outras Operações de Saída). Relativo ao PIS e COFINS, para as operações que não envolvam tratamento diferenciado na legislação destas contribuições, o contribuinte deverá observar que os campos de base de cálculo e tributo deverão ser inutilizados no documento fiscal. A orientação contida no manual de preenchimento da NF-e faz referência ao uso da CST 99 para cumprir com esta exigência. Adicionamente informamos que poderá ser utilizada a CST 49 para PIS e COFINS desde que os campos de base de cálculo e valor dos tributos permanecam inutilizados na NF-e (Orientação de Preenchimento da NF-e - versão 1.05 disposto no Ato Cotepe ICMS nº 007/2013 e resposta nº 95 do perguntas e respostas da EFD-Contribuições disponível no Portal do Sped).",
+                    "99": "99 (Outras Operações) e 49 (Outras Operações de Saída). Relativo ao PIS e COFINS, para as operações que não envolvam tratamento diferenciado na legislação destas contribuições, o contribuinte deverá observar que os campos de base de cálculo e tributo deverão ser inutilizados no documento fiscal. A orientação contida no manual de preenchimento da NF-e faz referência ao uso da CST 99 para cumprir com esta exigência. Adicionamente informamos que poderá ser utilizada a CST 49 para PIS e COFINS desde que os campos de base de cálculo e valor dos tributos permanecam inutilizados na NF-e (Orientação de Preenchimento da NF-e - versão 1.05 disposto no Ato Cotepe ICMS nº 007/2013 e resposta nº 95 do perguntas e respostas da EFD-Contribuições disponível no Portal do Sped)."
+                }
+            },
+            "regime_cumulativo": {
+                "entrada": {
+                    "70": "Operação de Aquisição sem Direito a Crédito."
+                },
+                "saida": {
+                    "1": "Operação Tributável com Alíquota Básica."
+                }
+            },
+            "regime_nao_cumulativo": {
+                "entrada": {
+                    "50": "Vinculada Exclusivamente a Receita Tributada no Mercado Interno.",
+                    "51": "Vinculada Exclusivamente a Receita Não Tributada no Mercado Interno.",
+                    "52": "Vinculada Exclusivamente a Receita de Exportação.",
+                    "53": "Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno.",
+                    "54": "Vinculada a Receitas Tributadas no Mercado Interno e de Exportação.",
+                    "55": "Vinculada a Receitas Não-Tributadas no Mercado Interno e de Exportação.",
+                    "56": "Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno, e de Exportação.",
+                    "70": "Operação de Aquisição sem Direito a Crédito."
+                },
+                "saida": {
+                    "1": "Operação Tributável com Alíquota Básica."
+                }
+            }
+        },
+        "efd_contribuicoes": [
+            {
+                "index": 0,
+                "titulo": "geral",
+                "comentario": "Escrituração na saída da mercadoria/produto"
+            },
+            {
+                "index": 1,
+                "titulo": "SIMPLES NACIONAL",
+                "comentario": "As microempresas e as empresas de pequeno porte enquadradas no Simples Nacional, relativamente aos períodos abrangidos por esse regime, estão dispensadas da apresentação da EFD-Contribuições (Instrução Normativa RFB nº 1.252/2012, artigo 5º, inciso I)."
+            },
+            {
+                "index": 2,
+                "titulo": "REGIME CUMULATIVO",
+                "comentario": "Para o regime de caixa, a escrituração será consolidada nos Registros F500, F525 e 1900. No regime de competência, a escrituração poderá ser simplificada nos Registros F550 e 1900, sem prejuízo da opção pela escrituração detalhada, nos Registros C100 e filhos (visão documental) ou nos Registros C180 e filhos (visão consolidada)."
+            },
+            {
+                "index": 3,
+                "titulo": "REGIME NÃO CUMULATIVO",
+                "comentario": "A escrituração será nos Registros C100 e filhos (visão documental) ou nos Registros C180 e filhos (visão consolidada)."
+            },
+            {
+                "index": 4,
+                "titulo": "NATUREZA DA RECEITA",
+                "comentario": "Não há natureza da receita para fins de escrituração das operações de saída tributável com alíquota básica para os regimes cumulativo e não cumulativo."
+            }
+        ]
+    },
+    "zfm": {
+        "14042010": "Produtos vegetais não especificados nem compreendidos noutras posições.,Línteres de algodão,Em bruto",
+        "aliquota": {
+            "simples_nacional": {
+                "pis": "Vide observações.",
+                "cofins": "Vide observações.",
+                "dispositivo_legal": "Lei Complementar nº 123/2006"
+            },
+            "regime_cumulativo": {
+                "pis": "0,00%",
+                "cofins": "0,00%",
+                "dispositivo_legal": "Lei nº 10.996/2004, artigo 2º"
+            },
+            "regime_nao_cumulativo": {
+                "pis": "0,00%",
+                "cofins": "0,00%",
+                "dispositivo_legal": "Lei nº 10.996/2004, artigo 2º"
+            }
+        },
+        "observacoes": [
+            {
+                "index": 0,
+                "titulo": "SIMPLES NACIONAL",
+                "comentario": "As microempresas e as empresas de pequeno porte optantes pelo Simples Nacional não se beneficiam da alíquota zero do PIS e da COFINS sobre as receitas de vendas de mercadorias à Zona Franca de Manaus ou Área de Livre Comércio, devido à impossibilidade em utilizar ou destinar qualquer valor a título de incentivo fiscal (Lei Complementar nº 123/2006, artigo 24).A tributação do PIS e da COFINS será determinada conforme os percentuais de repartição das referidas contribuições (aplicados sobre a alíquota efetiva utilizada para apuração do DAS) constantes no Anexo de enquadramento."
+            },
+            {
+                "index": 1,
+                "titulo": "ZONA FRANCA DE MANAUS (ZFM)",
+                "comentario": "Para os regimes cumulativo e não cumulativo, ficam reduzidas a zero as alíquotas do PIS e da COFINS incidentes sobre as receitas de vendas de mercadorias destinadas ao consumo (utilizadas diretamente ou para comercialização por atacado ou a varejo) ou à industrialização na Zona Franca de Manaus, por pessoa jurídica estabelecida fora da ZFM (Lei nº 10.996/2004, artigo 2º).Nas notas fiscais relativas à venda, deverá constar a expressão \"Venda de mercadoria efetuada com alíquota zero da Contribuição para o PIS/Pasep e da COFINS - Lei nº 10.996/2004, artigo 2º\"."
+            },
+            {
+                "index": 2,
+                "titulo": "ÁREAS DE LIVRE COMÉRCIO",
+                "comentario": "As vendas de mercadorias destinadas ao consumo ou à industrialização nas Áreas de Livre Comércio, por pessoa jurídica optante pelos regimes cumulativo ou não cumulativo estabelecida fora dessas áreas, terão a alíquota do PIS e da COFINS reduzidas a zero, exceto nas vendas de mercadorias que tenham como destinatárias pessoas jurídicas atacadistas e varejistas, sujeitas ao regime de apuração não cumulativa do PIS e da COFINS (Lei nº 10.996/2004, artigo 2º,  3º e 4º). As áreas são:a) Área de Livre Comércio de Tabatinga (ALCT), no Estado do Amazonas (Lei nº 7.965/89);b) Área de Livre Comércio de Guajará-Mirim (ALCGM), no Estado de Rondônia (Lei nº 8.210/91);c) Áreas de Livre Comércio de Boa Vista (ALCBV) e Bonfim (ALCB), no Estado de Roraima (Lei nº 8.256/91);d) Área de Livre Comércio de Macapá e Santana (ALCMS), no Estado do Amapá (Lei nº 8.387/91);e) Áreas de Livre Comércio de Brasiléia (ALCB) e de Cruzeiro do Sul (ALCCS), no Estado do Acre (Lei nº 8.857/94)."
+            },
+            {
+                "index": 3,
+                "titulo": "MATÉRIAS",
+                "comentario": "MATÉRIAS-PRIMAS, PRODUTOS INTERMEDIÁRIOS E MATERIAIS DE EMBALAGEM - São reduzidas a zero as alíquotas do PIS e da COFINS incidentes sobre as receitas decorrentes da comercialização de matérias-primas, produtos intermediários e materiais de embalagem, produzidos na Zona Franca de Manaus para emprego em processo de industrialização por estabelecimentos industriais dos regimes cumulativo ou não cumulativo ali instalados, consoante projetos aprovados pelo Conselho de Administração da Superintendência da Zona Franca de Manaus (SUFRAMA) (Lei nº 10.637/2002, artigo 5º-A)."
+            },
+            {
+                "index": 4,
+                "titulo": "REGIME NÃO CUMULATIVO",
+                "comentario": "As alíquotas especiais para vendas realizadas por pessoa jurídica optante pelo regime não cumulativo estabelecida na Zona Franca de Manaus estão dispostas abaixo do item \"Solução de Consulta\"."
+            },
+            {
+                "index": 5,
+                "titulo": "CÓDIGO DE SITUAÇÃO TRIBUTÁRIA (CST)",
+                "comentario": "Os Códigos de Situação Tributária estão previstos na IN RFB nº 1.009/2010. Com relação ao Simples Nacional, a resposta nº 97 das perguntas e respostas da EFD-Contribuições orienta sobre o CST a ser utilizado pelo referido regime tributário."
+            }
+        ],
+        "codigo_da_situacao_tributaria_cst": {
+            "": {
+                "regime_nao_cumulativo": {
+                    "50": "Vinculada Exclusivamente a Receita Tributada no Mercado Interno",
+                    "51": "Vinculada Exclusivamente a Receita Não Tributada no Mercado Interno",
+                    "52": "Vinculada Exclusivamente a Receita de Exportação",
+                    "53": "Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno",
+                    "54": "Vinculada a Receitas Tributadas no Mercado Interno e de Exportação",
+                    "55": "Vinculada a Receitas Não-Tributadas no Mercado Interno e de Exportação",
+                    "56": "Vinculada a Receitas Tributadas e Não-Tributadas no Mercado Interno, e de Exportação",
+                    "70": "Operação de Aquisição sem Direito a Crédito"
+                }
+            }
+        },
+        "efd_contribuicoes": [
+            {
+                "index": 0,
+                "titulo": "geral",
+                "comentario": "Escrituração na saída da mercadoria/produto"
+            },
+            {
+                "index": 1,
+                "titulo": "REGIME NÃO CUMULATIVO",
+                "comentario": "A escrituração será nos Registros C100 e filhos (visão documental) ou Registros C180 e filhos (visão consolidada)."
+            }
+        ]
+    }
+}
