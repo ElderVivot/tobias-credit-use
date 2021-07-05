@@ -19,7 +19,10 @@ class SaveData(object):
     def _createIndex(self):
         indexes = list(self._collection.index_information())
         if len(indexes) <= 1:
-            self._collection.create_index([("chave_nota", ASCENDING), ("prod_numero_item", ASCENDING)])
+            self._collection.create_index([
+                ("chave_nota", ASCENDING),
+                ("prod_numero_item", ASCENDING)
+            ])
 
     def save(self, data: Dict[str, str], filters: Dict[str, str]):
         try:
